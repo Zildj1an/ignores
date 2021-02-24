@@ -41,7 +41,7 @@ def commit(url,clone_url, language):
 		# TODO Extend this to all the programming languages.
 		if language == 'C':
 			ignore_file = 'ignore_c'
-		else if language == 'Java':
+		elif language == 'Java':
 			ignore_file = 'ignore_java'
 		else:
 			ignore_file = 'ignore_py'
