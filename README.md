@@ -1,4 +1,4 @@
-Many GitHub projects don't have the .gitignore file, let's create a pull requests to all of them!
+Many GitHub projects don't have the .gitignore file, which bothers me, so I will pull request all of them!
 
 - author Carlos Bilbao 2021                           
 - Contact: bilbao at vt.edu    
