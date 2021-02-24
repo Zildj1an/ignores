@@ -80,8 +80,11 @@ for USER in users:
 
 	while i < len(json):
 
-		repo = json[i]['ssh_url']
-	
+		try:
+			repo = json[i]['ssh_url']
+		except KeyError:
+			continue;	
+
 		if json[i]['size'] < MAX_REPOSITORY_SIZE:
 			if json[i]['private'] != 'true':
 				language = json[i]['language']
