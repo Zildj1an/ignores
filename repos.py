@@ -40,6 +40,8 @@ def commit(url,clone_url, language):
 		# TODO Extend this to all the programming languages.
 		if language == 'C':
 			ignore_file = 'ignore_c'
+		else:
+			ignore_file = 'ignore_py'
 		os.system('cp ../git_ignores/' + ignore_file + ' ./.gitignore')
 		os.system('git add .gitignore')
 		os.system('git commit -S -m "Improved the project with a .gitignore file"')
@@ -73,9 +75,8 @@ def commit(url,clone_url, language):
 with open(FILE) as f:
   users = json.load(f)
 
-for __user in users:
+for USER in users:
 
-	USER = __user['login']
 	url = 'https://api.github.com/users/' + USER + '/repos?per_page=1000'
 	r = requests.get(url)
 	json = r.json()
@@ -93,7 +94,7 @@ for __user in users:
 		if json[i]['size'] <= MAX_REPOSITORY_SIZE or True:
 			if json[i]['private'] != 'true':
 				language = json[i]['language']
-				if language == 'C':
+				if language == 'C' or language == 'Python':
 					commit(repo, json[i]['clone_url'],language)
 		i = i + 1
 	# TODO remove forks after pull requests are accepted
