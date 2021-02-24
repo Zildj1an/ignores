@@ -1,5 +1,0 @@
-Many GitHub projects don't have the .gitgnore file. I will create a pull request to all of them.
-
-author Carlos Bilbao 2021                           
-
-Contact: bilbao at vt.edu 
