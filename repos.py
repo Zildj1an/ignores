@@ -37,11 +37,15 @@ def commit(url,clone_url, language):
 		
 		os.chdir(repo_name)
 		os.system('git checkout -b ig')
+
 		# TODO Extend this to all the programming languages.
 		if language == 'C':
 			ignore_file = 'ignore_c'
+		else if language == 'Java':
+			ignore_file = 'ignore_java'
 		else:
 			ignore_file = 'ignore_py'
+
 		os.system('cp ../git_ignores/' + ignore_file + ' ./.gitignore')
 		os.system('git add .gitignore')
 		os.system('git commit -S -m "Improved the project with a .gitignore file"')
@@ -95,7 +99,7 @@ for _USER in users:
 		if json[i]['size'] <= MAX_REPOSITORY_SIZE or True:
 			if json[i]['private'] != 'true':
 				language = json[i]['language']
-				if language == 'C' or language == 'Python':
+				if language == 'C' or language == 'Python' or language == 'Java':
 					commit(repo, json[i]['clone_url'],language)
 		i = i + 1
 	# TODO remove forks after pull requests are accepted
