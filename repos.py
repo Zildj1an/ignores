@@ -77,7 +77,7 @@ with open(FILE) as f:
 
 for _USER in users:
 
-	USER = USER['login']
+	USER = _USER['login']
 	url = 'https://api.github.com/users/' + USER + '/repos?per_page=1000'
 	r = requests.get(url)
 	json = r.json()
