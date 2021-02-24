@@ -13,7 +13,7 @@ from os import path
 MAX_REPOSITORY_SIZE = 600
 
 # File with users name
-FILE='users'
+FILE='users.json'
 
 def commit(url,clone_url, language):
 
@@ -63,15 +63,19 @@ def commit(url,clone_url, language):
 
 # Retrieve all GitHub users until 2015
 # TODO Use GitHub API for updated information by chunks
-f = open(FILE) 
-users = []
-lines = f.read().splitlines()
-f.close()
-for user in lines:
-	users.append(user)
+#f = open(FILE) 
+#users = []
+#lines = f.read().splitlines()
+#f.close()
+#for user in lines:
+#	users.append(user)
 
-for USER in users:
+with open(FILE) as f:
+  users = json.load(f)
 
+for __user in users:
+
+	USER = __user['login']
 	url = 'https://api.github.com/users/' + USER + '/repos?per_page=1000'
 	r = requests.get(url)
 	json = r.json()
@@ -83,9 +87,10 @@ for USER in users:
 		try:
 			repo = json[i]['ssh_url']
 		except KeyError:
+			i = i + 1
 			continue;	
 
-		if json[i]['size'] < MAX_REPOSITORY_SIZE:
+		if json[i]['size'] <= MAX_REPOSITORY_SIZE:
 			if json[i]['private'] != 'true':
 				language = json[i]['language']
 				if language == 'C':
