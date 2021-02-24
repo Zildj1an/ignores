@@ -39,7 +39,7 @@ def commit(url,clone_url, language):
 		os.system('git checkout -b ig')
 
 		# TODO Extend this to all the programming languages.
-		if language == 'C':
+		if language == 'C' or language == 'C++':
 			ignore_file = 'ignore_c'
 		elif language == 'Java':
 			ignore_file = 'ignore_java'
@@ -99,7 +99,7 @@ for _USER in users:
 		if json[i]['size'] <= MAX_REPOSITORY_SIZE or True:
 			if json[i]['private'] != 'true':
 				language = json[i]['language']
-				if language == 'C' or language == 'Python' or language == 'Java':
+				if language=='C' or language=='Python' or language=='Java' or language =='C++':
 					commit(repo, json[i]['clone_url'],language)
 		i = i + 1
 	# TODO remove forks after pull requests are accepted
