@@ -75,8 +75,9 @@ def commit(url,clone_url, language):
 with open(FILE) as f:
   users = json.load(f)
 
-for USER in users:
+for _USER in users:
 
+	USER = USER['login']
 	url = 'https://api.github.com/users/' + USER + '/repos?per_page=1000'
 	r = requests.get(url)
 	json = r.json()
